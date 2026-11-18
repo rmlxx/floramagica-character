@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Flora Magica Academy – Character Codex</title>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500&family=Pinyon+Script&family=Prompt:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--bg:#f5faff;--bg2:#fff5f9;--ink:#27334d;--mute:#5b6985;--glass:rgba(255,255,255,.86);--line:rgba(255,255,255,.9);--pink:#ee9db0;--blue:#7fa8d8;--teal:#86b4ba;--gold:#bfa86c;--sh:rgba(110,140,190,.24);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 56px);height:100%}
+*{box-sizing:border-box}
+body{margin:0;min-height:100%;font:300 15px/1.75 Prompt,sans-serif;color:var(--ink);background:linear-gradient(var(--bg),var(--bg2)) fixed;overflow-x:hidden}
+.clock{position:fixed;left:50%;top:40%;width:min(150vw,940px);aspect-ratio:1;transform:translate(-50%,-50%);opacity:.5;z-index:0;pointer-events:none}
+.clock svg{width:100%;height:100%;fill:none;stroke:var(--gold);stroke-width:1}
+.clock text{fill:var(--gold);stroke:none;font:700 14px "Cinzel Decorative",serif;text-anchor:middle}
+#ring,.hands line{transform-origin:200px 200px;animation:spin 300s linear infinite}
+.hands line{stroke-width:1.6;animation-duration:140s}.hands line+line{animation-duration:900s}
+@keyframes spin{to{transform:rotate(360deg)}}
+#fx{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+#bfl{position:fixed;inset:0;z-index:4;pointer-events:none;overflow:hidden}
+.b{position:absolute;margin:-13px 0 0 -17px;opacity:0;animation:fly 3.4s cubic-bezier(.2,.7,.3,1) forwards}
+.b g{transform-origin:20px 15px;animation:flap .2s ease-in-out infinite alternate}
+@keyframes flap{to{transform:scaleX(.28)}}
+@keyframes fly{0%{opacity:0;transform:translate(0,0) rotate(0) scale(.3)}12%{opacity:1}100%{opacity:0;transform:translate(var(--x),var(--y)) rotate(var(--r)) scale(var(--s))}}
+.pill{position:fixed;z-index:5;top:calc(env(safe-area-inset-top,0px) + 10px);display:flex;align-items:center;gap:6px;padding:5px 12px;font:500 12px/1.6 Prompt,sans-serif;color:var(--ink);background:var(--glass);border:1px solid var(--line);border-radius:99px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 4px 16px var(--sh)}
+.pill.l{left:14px}.pill.r{right:14px}
+svg.i{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+main{position:relative;z-index:2;max-width:560px;margin:0 auto;padding:0 16px 130px}
+.hero{min-height:92svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-top:40px}
+h1{margin:0;font:700 clamp(52px,17vw,92px)/.95 "Cinzel Decorative",serif;display:flex;flex-direction:column;align-items:center;filter:drop-shadow(1.5px 0 0 #fff) drop-shadow(-1.5px 0 0 #fff) drop-shadow(0 1.5px 0 #fff) drop-shadow(0 -1.5px 0 #fff) drop-shadow(0 10px 16px var(--sh));animation:ttl 1.6s ease both}
+@keyframes ttl{from{opacity:0}}
+h1 .p{background:linear-gradient(#ffc2cc,#ee8fa6);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1 .m{background:linear-gradient(#c9d9f0,#7f9fcc);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1 .a{font:400 clamp(44px,14vw,76px)/.8 "Pinyon Script",cursive;margin-top:-.1em;background:linear-gradient(#d6f1ee,#7fbcbc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{margin:26px 0 0;font:500 15px "Cinzel",serif;letter-spacing:.22em;color:var(--mute)}
+.th{margin:2px 0 0;color:var(--mute);font-size:13px}
+.rv,nav{opacity:1}
+html.js .rv,html.js nav{opacity:0;transform:translateY(14px);transition:opacity 1.5s ease,transform 1.5s ease}
+html.js body.ready .rv,html.js body.ready nav{opacity:1;transform:none}
+section{padding-top:34px}
+h2{margin:0;font:700 22px/1.3 "Cinzel Decorative",serif;letter-spacing:.02em}
+section>.th{margin-bottom:14px}
+.card{position:relative;background:var(--glass);border:1px solid var(--line);border-radius:22px;padding:22px 22px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 10px 30px var(--sh);margin-bottom:16px}
+.card::before{content:"";position:absolute;inset:6px;border:1px dashed rgba(127,168,216,.65);border-radius:17px;pointer-events:none}
+.card h3{margin:0 0 2px;font:400 32px/1.25 "Pinyon Script",cursive}
+.card p{margin:6px 0}
+.hl{height:1px;background:var(--line);margin:14px -4px;border:0;box-shadow:0 1px 0 rgba(120,150,200,.12)}
+ul{list-style:none;margin:6px 0;padding:0}
+li{position:relative;padding-left:18px;margin:5px 0}
+li::before{content:"";position:absolute;left:3px;top:.8em;width:6px;height:6px;background:var(--pink);transform:rotate(45deg)}
+dl{margin:8px 0 0}
+dt{font-weight:500;font-size:13.5px;color:var(--mute);margin-top:9px}
+dd{margin:0}
+.sw{display:inline-flex;gap:5px;vertical-align:middle;margin-left:8px}
+.sw i{width:16px;height:16px;border-radius:50%;border:1.5px solid #fff;box-shadow:0 1px 5px var(--sh)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;margin:6px 0}
+.kv b{font-weight:500;color:var(--mute);font-size:13.5px}
+h2::after{content:"";display:block;width:100px;height:9px;margin:8px 0 2px;background:linear-gradient(var(--blue),var(--blue)) 0 4px/40px 1px no-repeat,linear-gradient(var(--pink),var(--pink)) 100% 4px/40px 1px no-repeat}
+#guide .card:first-of-type{background:radial-gradient(rgba(238,157,176,.42) 1.3px,transparent 1.8px) 0 0/13px 13px,rgba(255,255,255,.9)}
+#guide li{padding:10px 16px;margin:9px 0;border-radius:16px;border:1.5px solid var(--ink);background:rgba(255,255,255,.85)}
+#guide li:nth-child(even){background:var(--ink);color:#fff}
+#guide li::before{display:none}
+#years .card:first-of-type{counter-reset:y}
+#years .card:first-of-type h3{counter-increment:y;position:relative;padding-left:70px;min-height:46px}
+#years .card:first-of-type h3::before{content:counter(y,upper-roman);position:absolute;left:0;top:-2px;width:62px;text-align:center;font:700 40px/1 "Cinzel Decorative",serif;color:transparent;-webkit-text-stroke:1.2px var(--blue)}
+#years .card:first-of-type .kv,#years .card:first-of-type dl{margin-left:70px}
+#years .card+.card{background:rgba(255,238,244,.93)}
+.hc{padding-top:40px;overflow:hidden}
+.hc::before{inset:0 0 auto 0;height:24px;border:0;border-radius:0;background:radial-gradient(circle at 10px 12px,var(--c1) 9.5px,transparent 10px) 0 0/20px 24px repeat-x,linear-gradient(var(--c1),var(--c1)) 0 0/100% 12px no-repeat}
+.hc::after{content:"";position:absolute;inset:auto 0 0 0;height:6px;background:linear-gradient(90deg,var(--c1),var(--c2))}
+#flowers .card{padding-top:30px;--st:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1c.7 6 4 10 10 11-6 1-9.3 5-10 11-.7-6-4-10-10-11 6-1 9.3-5 10-11z' fill='none' stroke='%237fa8d8' stroke-width='1.6'/%3E%3C/svg%3E")}
+#flowers .card::before{inset:auto;top:-10px;left:50%;width:86px;height:22px;translate:-50% 0;rotate:-3deg;border:0;border-radius:2px;background:rgba(240,169,184,.65)}
+#flowers .card:nth-of-type(even)::before{rotate:2deg;background:rgba(143,184,189,.65)}
+#flowers .card::after{content:"";position:absolute;inset:12px;pointer-events:none;background:var(--st) 0 0/14px no-repeat,var(--st) 100% 0/14px no-repeat,var(--st) 0 100%/14px no-repeat,var(--st) 100% 100%/14px no-repeat}
+#flowers .card h3{display:inline-block;margin:0 0 8px;background:var(--ink);color:#fff;font:500 12.5px/1.9 "Cinzel",serif;letter-spacing:.2em;padding:1px 14px;rotate:-1.5deg}
+#flowers .fl{gap:0 14px}
+#flowers .fl b,#flowers .fl span{padding:7px 0;border-bottom:1px dotted rgba(127,168,216,.75)}
+#magic .card:first-of-type dl{display:grid;grid-template-columns:100px 1fr;gap:10px 12px;align-items:start}
+#magic .card:first-of-type dt{margin:0;background:var(--ink);color:#fff;border-radius:99px;padding:1px 8px;text-align:center;font-size:12.5px}
+#magic .card:last-of-type{background:#2a3656;color:#f3f6fd;border-radius:150px 150px 22px 22px;padding-top:54px}
+#magic .card:last-of-type::before{border-color:rgba(255,255,255,.38);border-radius:145px 145px 17px 17px}
+#magic .card:last-of-type h3{text-align:center;font-size:40px}
+#magic .card:last-of-type p{text-align:center;padding:0 8px}
+#magic .card:last-of-type .fl span{color:#c6d3ef}
+#magic .card:last-of-type .hl{background:rgba(255,255,255,.28);box-shadow:none}
+#magic .card:last-of-type li::before{background:var(--gold)}
+.fl{display:grid;grid-template-columns:minmax(86px,auto) 1fr;gap:6px 14px;margin:8px 0 0}
+.fl b{font-weight:500}.fl span{color:var(--mute)}
+nav{position:fixed;z-index:5;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));translate:-50% 0;display:flex;gap:2px;padding:5px;background:var(--glass);border:1px solid var(--line);border-radius:99px;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 8px 28px var(--sh);max-width:calc(100vw - 20px)}
+nav a{display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 11px;border-radius:99px;color:var(--ink);text-decoration:none;font:500 11px/1.3 Prompt,sans-serif;transition:background .3s,color .3s}
+nav a.on{background:var(--ink);color:var(--bg)}
+a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){#ring,.hands line,.b,.b g,h1{animation:none}html{scroll-behavior:auto}html.js .rv,html.js nav{transition:none}}
+</style>
+</head>
+<body>
+<div class="clock" aria-hidden="true"><svg viewBox="0 0 400 400"><g id="ring"></g><circle cx="200" cy="200" r="150"/><circle cx="200" cy="200" r="146" stroke-dasharray="1 6"/><circle cx="200" cy="200" r="96"/><g class="hands"><line x1="200" y1="200" x2="200" y2="82"/><line x1="200" y1="200" x2="268" y2="232"/></g><circle cx="200" cy="200" r="4" fill="currentColor" style="fill:var(--gold)"/></svg></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div id="bfl" aria-hidden="true"></div>
+
+<div class="pill l rv"><svg class="i" viewBox="0 0 24 24"><path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9M9.5 4.5 12 7l2.5-2.5M9.5 19.5 12 17l2.5 2.5"/></svg>Everfrost Valley</div>
+<div class="pill r rv">#fmaww</div>
+
+<main>
+<header class="hero">
+<h1><span class="p">Flora</span><span class="m">Magica</span><span class="a">Academy</span></h1>
+<p class="sub">Character Codex</p>
+<p class="th">ข้อมูลสำหรับสร้างตัวละคร</p>
+</header>
+
+<section id="guide" class="rv">
+<h2>Before You Begin</h2>
+<p class="th">เซ็ตติ้งย่อและกติกาของตัวละคร</p>
+<div class="card">
+<p>หุบเขาเอเวอร์ฟรอสต์ในเทือกเขาแอลป์ สวิตเซอร์แลนด์ ถูกม่านมนตราซ่อนจากมักเกิ้ล อากาศหนาวตลอดปีและหิมะหนักในฤดูหนาว ปราสาทหินสีขาวนวลประดับเถาไอวี่น้ำแข็งกับไฟเวทสีทอง กลางลานมีต้นสนนิรันดร์ที่ลอยเหนือพื้นและโปรยละอองแสงดาว นักเรียนเดินทางมาด้วยรถไฟไอน้ำเวทมนตร์ Alpine Starlight Express</p>
+<p>เมื่อเข้าเรียน พิธีแห่งบุปผาจะปลุกดอกไม้ประจำจิตวิญญาณ ซึ่งกลายเป็นเข็มกลัดประจำตัวและเปลี่ยนสีตามอารมณ์หรือพลังเวทของผู้ถือ</p>
+</div>
+<div class="card">
+<h3>Character Rules</h3>
+<ul>
+<li>อายุ 15–18 ปี เทียบเท่า ม.4–ม.6</li>
+<li>สังกัดบ้านเดียวจากสี่บ้าน</li>
+<li>นิสัยต้องสัมพันธ์กับบ้านที่เลือก หากไม่สัมพันธ์ แอดมินจะไม่ผ่านฟอร์ม</li>
+<li>ต้องมีเชื้อชาติฝั่งตะวันตกหรือยุโรป ไม่รับเอเชียแท้ ต้องเป็นลูกครึ่งอย่างน้อย</li>
+<li>ไม่มีการรับตำแหน่งใดในโรงเรียน ทุกตัวละครเป็นนักเรียนเท่ากัน</li>
+<li>ต้องระบุดอกไม้ประจำจิตวิญญาณ สื่อกลางเวทมนตร์ และความถนัด</li>
+<li>แท็กโรลคือ #fmaww ใส่ที่ไบโอ</li>
+</ul>
+</div>
+</section>
+
+<section id="years" class="rv">
+<h2>Academic Years</h2>
+<p class="th">เลือกชั้นปีให้ตรงกับอายุและความสามารถ</p>
+<div class="card">
+<h3>Novice</h3>
+<div class="kv"><b>ชั้นปี</b><span>ปี 1 (ม.4) อายุราว 15–16 ปี</span></div>
+<dl><dt>เรียนอะไร</dt><dd>ปูพื้นฐานการควบคุมพลังเวท ปรับตัวกับเวทธรรมชาติ เรียนกฎพื้นฐานของโลกเวทมนตร์</dd>
+<dt>ข้อจำกัด</dt><dd>ออกนอกเขตปราสาทโดยลำพังไม่ได้ ควบคุมเวทยังไม่นิ่ง ร่ายเวทพลาดได้บ่อย</dd></dl>
+<hr class="hl">
+<h3>Adept</h3>
+<div class="kv"><b>ชั้นปี</b><span>ปี 2 (ม.5) อายุราว 16–17 ปี</span></div>
+<dl><dt>เรียนอะไร</dt><dd>เริ่มเลือกสายวิชาเฉพาะทาง ปรุงยาขั้นกลาง ร่ายเวทประยุกต์</dd>
+<dt>อิสระ</dt><dd>เข้าป่าสนชั้นนอกและหมู่บ้านใกล้เคียงได้ในวันหยุดสุดสัปดาห์</dd></dl>
+<hr class="hl">
+<h3>Mastery</h3>
+<div class="kv"><b>ชั้นปี</b><span>ปี 3 (ม.6) อายุราว 17–18 ปี</span></div>
+<dl><dt>เรียนอะไร</dt><dd>ทำโปรเจกต์เวทมนตร์ (Thesis) ควบคุมเวทขั้นสูง</dd>
+<dt>ข้อจำกัด</dt><dd>ยังเป็นนักเรียนเท่ากับปีอื่น ไม่มีตำแหน่งพิเศษ และเวทต้องห้ามยังใช้ไม่ได้</dd></dl>
+</div>
+<div class="card">
+<h3>Curriculum</h3>
+<dl><dt>วิชาบังคับ</dt><dd>พฤกษเวท (Magical Herbology) / การปรุงยาและแปรธาตุ (Potions &amp; Alchemy) / การควบคุมพลังเวทและคาถา (Arcane Casting &amp; Charms) / ประวัติศาสตร์เวทมนตร์และดาราศาสตร์</dd>
+<dt>วิชาเลือก</dt><dd>ดนตรีและศิลปะเวทมนตร์ / การดูแลสัตว์วิเศษ / เวทป้องกันตัวและการประลอง</dd></dl>
+</div>
+</section>
+
+<section id="houses" class="rv">
+<h2>The Four Houses</h2>
+<p class="th">นิสัยของตัวละครต้องไปทางเดียวกับบ้าน</p>
+
+<div class="card hc" style="--c1:#F4C542;--c2:#D6A52A">
+<h3>Solaris<span class="sw"><i style="background:#F4C542"></i><i style="background:#D6A52A"></i></span></h3>
+<p class="th">โซลาริส ดอกทานตะวัน #F4C542 / #D6A52A</p>
+<dl><dt>อุดมการณ์</dt><dd>ความกล้าหาญ ความหวัง แสงสว่าง</dd>
+<dt>นิสัยที่เข้ากับบ้าน</dt><dd>จิตใจเร่าร้อน มองโลกในแง่ดี กล้าเผชิญอุปสรรค เป็นแรงบันดาลใจให้ผู้อื่น</dd>
+<dt>นิสัยที่ไม่เข้ากับบ้าน</dt><dd>หลบปัญหาเป็นนิสัย มองโลกในแง่ร้ายสุดโต่ง</dd>
+<dt>หอพัก</dt><dd>หอคอยฝั่งตะวันออก รับแสงยามเช้า โทนทองและไม้โอ๊ค เตาผิงใหญ่ พรมขนสัตว์หนานุ่ม</dd></dl>
+</div>
+
+<div class="card hc" style="--c1:#A9C7E8;--c2:#C5C9D8">
+<h3>Lunaria<span class="sw"><i style="background:#A9C7E8"></i><i style="background:#C5C9D8"></i></span></h3>
+<p class="th">ลูนาเรีย ดอกไฮเดรนเยีย #A9C7E8 / #C5C9D8</p>
+<dl><dt>อุดมการณ์</dt><dd>สติปัญญา ความลึกลับ การค้นหาความจริง</dd>
+<dt>นิสัยที่เข้ากับบ้าน</dt><dd>นักคิด ช่างสังเกต รักความสงบ มีโลกส่วนตัว หลงใหลปริศนาของจักรวาล</dd>
+<dt>นิสัยที่ไม่เข้ากับบ้าน</dt><dd>ลงมือโดยไม่ไตร่ตรอง ไม่สนใจหาความรู้หรือเหตุผล</dd>
+<dt>หอพัก</dt><dd>หอคอยหอดูดาว เพดานกระจกใสเห็นท้องฟ้า โทนเงินกับฟ้าคราม ชั้นหนังสือลอยได้</dd></dl>
+</div>
+
+<div class="card hc" style="--c1:#D9B9D5;--c2:#F4EBDD">
+<h3>Aurelia<span class="sw"><i style="background:#D9B9D5"></i><i style="background:#F4EBDD"></i></span></h3>
+<p class="th">ออเรเลีย ดอกลาเวนเดอร์ #D9B9D5 / #F4EBDD</p>
+<dl><dt>อุดมการณ์</dt><dd>ความเมตตา การเยียวยา ความอบอุ่น</dd>
+<dt>นิสัยที่เข้ากับบ้าน</dt><dd>โอบอ้อมอารี เข้าใจความรู้สึกผู้อื่น เก่งด้านการดูแล สร้างความสบายใจให้คนรอบข้าง</dd>
+<dt>นิสัยที่ไม่เข้ากับบ้าน</dt><dd>เมินเฉยต่อคนเจ็บ ใจร้ายหรือเห็นแก่ตัวเป็นหลัก</dd>
+<dt>หอพัก</dt><dd>ติดเรือนกระจกพฤกษศาสตร์ โทนม่วงพาสเทลกับครีม กลิ่นดอกไม้และสมุนไพรอบอวล</dd></dl>
+</div>
+
+<div class="card hc" style="--c1:#762D43;--c2:#242126">
+<h3>Ignis<span class="sw"><i style="background:#762D43"></i><i style="background:#242126"></i></span></h3>
+<p class="th">อิกนิส กุหลาบหนาม #762D43 / #242126</p>
+<dl><dt>อุดมการณ์</dt><dd>ความทะเยอทะยาน ความมุ่งมั่น เด็ดเดี่ยว</dd>
+<dt>นิสัยที่เข้ากับบ้าน</dt><dd>เป้าหมายชัดเจน ไม่ยอมแพ้ง่าย มีเสน่ห์น่าค้นหา พร้อมทำทุกอย่างเพื่อสิ่งที่ยึดมั่น</dd>
+<dt>นิสัยที่ไม่เข้ากับบ้าน</dt><dd>ไร้เป้าหมาย ล้มเลิกง่าย ปล่อยตามกระแส</dd>
+<dt>หอพัก</dt><dd>ปีกปราสาทฝั่งใต้และชั้นใต้ดินที่อบอุ่น สไตล์โกธิคหรู โทนแดงเบอร์กันดีกับดำ โคมระย้าคริสตัล</dd></dl>
+</div>
+</section>
+
+<section id="flowers" class="rv">
+<h2>Soul Flowers</h2>
+<p class="th">ดอกไม้ประจำจิตวิญญาณ</p>
+<div class="card">
+<h3>How It Works</h3>
+<ul>
+<li>ระบุชนิดดอกไม้ สี และความหมายที่เชื่อมกับตัวละคร</li>
+<li>ดอกไม้กลายเป็นเข็มกลัดที่ติดกับเครื่องแบบ</li>
+<li>สีเข็มกลัดเปลี่ยนตามอารมณ์หรือพลังเวทของเจ้าของ</li>
+<li>เลือกดอกไม้จากรายการด้านล่าง หรือเสนอดอกอื่นพร้อมเหตุผลได้</li>
+</ul>
+</div>
+<div class="card">
+<h3>Solaris</h3>
+<div class="fl"><b>ทานตะวัน</b><span>ความภักดี ความหวัง หันหาแสงเสมอ</span><b>ดาวเรือง</b><span>ความอบอุ่น การปกป้อง</span><b>เดซี่เหลือง</b><span>ความซื่อตรง ความสดใส</span><b>แดฟโฟดิล</b><span>การเริ่มต้นใหม่</span><b>มิโมซ่า</b><span>ความอ่อนโยนที่ซ่อนความกล้า</span></div>
+<hr class="hl">
+<h3>Lunaria</h3>
+<div class="fl"><b>ไฮเดรนเยีย</b><span>ความลึกลับ ความรู้สึกที่ซ่อนไว้</span><b>ฟอร์เก็ตมีนอท</b><span>ความทรงจำ ความผูกพัน</span><b>บลูเบลล์</b><span>ความจริงใจ ความสงบ</span><b>ไอริส</b><span>ปัญญา ผู้ส่งสาร</span><b>เอเดลไวส์</b><span>ความกล้าและความบริสุทธิ์ดอกไม้แห่งเทือกเขาแอลป์</span></div>
+<hr class="hl">
+<h3>Aurelia</h3>
+<div class="fl"><b>ลาเวนเดอร์</b><span>ความสงบ การเยียวยา</span><b>คาโมไมล์</b><span>ความอดทน การปลอบประโลม</span><b>ไวโอเล็ต</b><span>ความถ่อมตน ความซื่อสัตย์</span><b>ลิลลี่ขาว</b><span>ความบริสุทธิ์ ความเมตตา</span><b>พีโอนี</b><span>ความอบอุ่น ความสุขในบ้าน</span></div>
+<hr class="hl">
+<h3>Ignis</h3>
+<div class="fl"><b>กุหลาบหนาม</b><span>ความรักที่ต้องแลกด้วยบาดแผล</span><b>ป๊อปปี้แดง</b><span>การเสียสละ ความทรงจำ</span><b>คาเมลเลีย</b><span>ความมุ่งมั่น ความรักที่ไม่เปลี่ยน</span><b>เฮลเลอบอร์</b><span>กุหลาบคริสต์มาส ความกล้าเสี่ยง</span><b>มังก์ชูด</b><span>พิษที่งดงาม ความระวังตัว</span></div>
+</div>
+<div class="card">
+<h3>Brooch Colors</h3>
+<p>สีเข็มกลัดบอกอารมณ์ ใช้ในการโรลได้</p>
+<div class="fl"><b>สว่างประกายทอง</b><span>มั่นใจ มีความหวัง</span><b>ฟ้าจาง</b><span>สงบ ใช้สมาธิ</span><b>ชมพูอ่อน</b><span>มีความสุข ผูกพัน</span><b>ม่วงเข้ม</b><span>กังวล ครุ่นคิด</span><b>แดงเข้ม</b><span>โกรธ หรือตั้งใจแน่วแน่</span><b>ซีดขาว</b><span>เหนื่อยล้า พลังเวทลดลง</span></div>
+</div>
+</section>
+
+<section id="magic" class="rv">
+<h2>Arcane Medium &amp; Aptitude</h2>
+<p class="th">สื่อกลางเวทมนตร์และความถนัด</p>
+<div class="card">
+<h3>Magical Medium</h3>
+<p>สิ่งที่ตัวละครใช้ส่งผ่านพลังเวท เลือกได้อย่างน้อยหนึ่งอย่าง</p>
+<dl>
+<dt>ไม้กายสิทธิ์</dt><dd>ระบุไม้ เช่น สน เบิร์ช ฮอลลี่ เอล์ม แกนกลาง เช่น ขนนกฮูกหิมะ ผลึกน้ำแข็ง กลีบดอกไม้ ใยดาว</dd>
+<dt>คทา</dt><dd>เหมาะกับเวทกว้างและพลังหนัก ปลายคทาอาจฝังผลึกหรือดอกไม้แช่แข็ง</dd>
+<dt>หนังสือเวท</dt><dd>ร่ายจากบทในหนังสือ เหมาะกับสายความรู้และแปรธาตุ</dd>
+<dt>เครื่องดนตรี</dt><dd>ขลุ่ย ไวโอลิน พิณ กล่องดนตรี ร่ายเวทผ่านเสียงเพลง</dd>
+<dt>พู่กันและปากกา</dt><dd>วาดหรือเขียนเวทลงบนกระดาษและอากาศ</dd>
+<dt>เครื่องประดับ</dt><dd>แหวน สร้อย กำไล นาฬิกาพก</dd>
+<dt>โคมและลูกแก้ว</dt><dd>โคมไฟเวท ลูกแก้วคริสตัลสำหรับทำนายและกักแสง</dd>
+<dt>เครื่องมือพฤกษเวท</dt><dd>กรรไกรตัดกิ่ง กระถางเวท ขวดสกัดสมุนไพร</dd>
+</dl>
+</div>
+<div class="card">
+<h3>Aptitude</h3>
+<p>ความถนัดของตัวละคร ระบุสายหลักและเล่าที่มาด้วยว่าทำไมถึงเก่ง</p>
+<div class="fl">
+<b>ปรุงยา</b><span>น้ำยาฟื้นฟู น้ำยาเวทมนตร์ จากสมุนไพรและแร่ในหุบเขา</span>
+<b>แปรธาตุ</b><span>แยกและผสมธาตุ สกัดแก่นจากวัตถุดิบ</span>
+<b>พฤกษเวท</b><span>ปลูก ดูแล สื่อสารกับพืชวิเศษ</span>
+<b>เวทน้ำแข็ง</b><span>สร้างและควบคุมน้ำแข็งกับหิมะ</span>
+<b>เวทแสงดาว</b><span>แสงจากดวงดาว การอ่านคำทำนาย</span>
+<b>เยียวยา</b><span>รักษาแผลและบำรุงกำลัง งานของห้องพยาบาล</span>
+<b>ดนตรีเวท</b><span>ร่ายเวทผ่านเสียงเพลง</span>
+<b>ศิลปะเวท</b><span>ภาพวาด งานฝีมือ เครื่องรางที่มีพลัง</span>
+<b>สัตว์วิเศษ</b><span>กวางเรนเดียร์เกล็ดน้ำแข็ง นกฮูกหิมะ และสัตว์เขตหนาว</span>
+<b>ป้องกันตัวและประลอง</b><span>กางม่านพลัง การต่อสู้เชิงรับ</span>
+<b>คาถาและการควบคุมพลัง</b><span>ร่ายเวทพื้นฐานได้แม่นและเสถียร</span>
+</div>
+<hr class="hl">
+<ul>
+<li>ใช้เวทมนตร์ทำร้ายหรือกลั่นแกล้งผู้อื่นในโรงเรียนไม่ได้ การประลองทำได้เฉพาะลานประลองที่มีผู้ควบคุม</li>
+<li>ความเก่งต้องสมกับชั้นปี และมีจุดอ่อนอย่างน้อยหนึ่งข้อ</li>
+</ul>
+</div>
+</section>
+</main>
+
+<nav aria-label="Sections">
+<a href="#guide"><svg class="i" viewBox="0 0 24 24"><path d="M4 5c3-1 5-1 8 1v13c-3-2-5-2-8-1zM20 5c-3-1-5-1-8 1v13c3-2 5-2 8-1z"/></svg>Guide</a>
+<a href="#years"><svg class="i" viewBox="0 0 24 24"><path d="M4 19h5v-4h5v-4h6"/></svg>Years</a>
+<a href="#houses"><svg class="i" viewBox="0 0 24 24"><path d="M5 20V9a7 7 0 0 1 14 0v11zM9 20v-6h6v6"/></svg>Houses</a>
+<a href="#flowers"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="6" rx="2.2" ry="3.2"/><ellipse cx="12" cy="18" rx="2.2" ry="3.2"/><ellipse cx="6" cy="12" rx="3.2" ry="2.2"/><ellipse cx="18" cy="12" rx="3.2" ry="2.2"/></svg>Flowers</a>
+<a href="#magic"><svg class="i" viewBox="0 0 24 24"><path d="M12 3c.6 5 3 7.4 9 9-6 1.6-8.4 4-9 9-.6-5-3-7.4-9-9 6-1.6 8.4-4 9-9z"/></svg>Magic</a>
+</nav>
+
+<script>
+(()=>{
+const D=document,$=s=>D.querySelector(s),rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const R=['XII','I','II','III','IV','V','VI','VII','VIII','IX','X','XI'];let g='';
+for(let i=0;i<60;i++)g+=`<line x1="200" y1="10" x2="200" y2="${i%5?14:20}" transform="rotate(${i*6} 200 200)"/>`;
+R.forEach((t,i)=>g+=`<text x="200" y="46" transform="rotate(${i*30} 200 200)">${t}</text>`);
+$('#ring').innerHTML=g;
+
+const cv=$('#fx'),x=cv.getContext('2d');let W,H,fl=[],ps=[];
+const size=()=>{const d=devicePixelRatio||1;W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;x.setTransform(d,0,0,d,0,0)};
+size();addEventListener('resize',size);
+for(let i=0;i<Math.min(110,W/4|0);i++)fl.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*2.2+.7,s:Math.random()*.7+.3,p:Math.random()*6});
+const star=(cx,cy,r)=>{x.beginPath();x.moveTo(cx,cy-r);x.quadraticCurveTo(cx,cy,cx+r,cy);x.quadraticCurveTo(cx,cy,cx,cy+r);x.quadraticCurveTo(cx,cy,cx-r,cy);x.quadraticCurveTo(cx,cy,cx,cy-r);x.fill()};
+const C=['#ffffff','#f6d98a','#f3b3c4','#a9cdf3'];
+function frame(t){
+x.clearRect(0,0,W,H);
+x.fillStyle='#fff';x.shadowColor='rgba(120,165,225,.95)';x.shadowBlur=6;
+for(const f of fl){x.beginPath();x.arc(f.x,f.y,f.r,0,6.3);x.fill();
+if(!rm){f.y+=f.s;f.x+=Math.sin(t/1400+f.p)*.35;if(f.y>H+5){f.y=-5;f.x=Math.random()*W}}}
+for(let i=ps.length-1;i>=0;i--){const p=ps[i];p.l-=.022;if(p.l<=0){ps.splice(i,1);continue}
+p.x+=p.vx;p.y+=p.vy;p.vy+=.03;x.globalAlpha=p.l;x.fillStyle=p.c;x.shadowColor=p.c;x.shadowBlur=10;star(p.x,p.y,p.r*p.l+1)}
+x.globalAlpha=1;if(!rm)requestAnimationFrame(frame)}
+requestAnimationFrame(frame);
+if(!rm)addEventListener('pointerdown',e=>{for(let i=0;i<14;i++){const a=Math.random()*6.3,v=Math.random()*3+.8;
+ps.push({x:e.clientX,y:e.clientY,vx:Math.cos(a)*v,vy:Math.sin(a)*v-.6,l:1,r:Math.random()*6+3,c:C[i%4]})}});
+
+const bf=c=>`<svg viewBox="0 0 40 30" width="34" height="26"><g fill="${c}" fill-opacity=".88" stroke="#fff" stroke-width=".9"><path d="M20 15C14 2 3 1 2 9c-1 8 8 9 18 6zM20 15C13 17 6 24 11 28c5 2 8-6 9-13z"/><path d="M20 15C26 2 37 1 38 9c1 8-8 9-18 6zM20 15C27 17 34 24 29 28c-5 2-8-6-9-13z"/></g><path d="M20 8v15" stroke="#6b7a99" stroke-width="1.2"/></svg>`;
+if(!rm){const t=$('h1').getBoundingClientRect(),L=$('#bfl');
+for(let i=0;i<14;i++){const a=i/14*6.28+Math.random()*.5,d=Math.min(W,520)*(.5+Math.random()*.55),e=D.createElement('div');
+e.className='b';e.innerHTML=bf(i%2?'#f3b3c4':'#a9cdf3');
+e.style.cssText=`left:${t.left+t.width/2}px;top:${t.top+t.height*.45}px;--x:${Math.cos(a)*d}px;--y:${Math.sin(a)*d*1.2-40}px;--r:${(Math.random()-.5)*80}deg;--s:${(Math.random()*.7+.8).toFixed(2)};animation-delay:${(Math.random()*.7).toFixed(2)}s`;
+L.appendChild(e)}
+setTimeout(()=>L.remove(),5000)}
+setTimeout(()=>D.body.classList.add('ready'),rm?0:2400);
+
+const secs=[...D.querySelectorAll('main section')],ln=[...D.querySelectorAll('nav a')];
+const act=()=>{let c='';secs.forEach(s=>{if(s.getBoundingClientRect().top<innerHeight*.45)c=s.id});ln.forEach(a=>a.classList.toggle('on',a.hash==='#'+c))};
+addEventListener('scroll',act,{passive:true});act();
+})();
+</script>
+</body>
+</html>
